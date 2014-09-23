@@ -12,7 +12,8 @@
 %\usecolortheme{warna}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
+\usepackage{forest}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
 
 %\newtheorem{algorithm}{Algorithm}[section] 
 \usepackage{float}
@@ -325,37 +326,38 @@ cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PY
 \end{frame}
 
 
-\begin{frame}
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
-    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=red!80!green!80!blue!80, 
-    text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-    \tiny
-\begin{tikzpicture}[node distance = 2cm, auto]
+%\begin{frame}
+%\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+%    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+%\tikzstyle{block} = [rectangle, draw, fill=red!80!green!80!blue!80, 
+%    text width=5em, text centered, rounded corners, minimum height=4em]
+%\tikzstyle{line} = [draw, -latex']
+%\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+%    minimum height=2em]
+%    \tiny
+%\begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
-    \node [block] (AOSP) {AOSP kernel};
+  
+  %\node [block] (AOSP) {AOSP kernel};
   % \node [cloud, left of=init] (expert) {expert};
   % \node [cloud, right of=init] (system) {system};
-    \node [block,  fill=red!50!green!80!blue!100,  above of=AOSP, node distance=2cm] (franco) {Franco gombak kernel};
-    \node [block,  fill=red!50!green!80!blue!100,  below of=AOSP, node distance=2cm] (ampang) {Ampang kernel};
-    \node [block,  fill=red!50!green!80!blue!100,  right of=AOSP, node distance=2cm] (hellscore) {Hellscore kernel};
-    \node [block,  fill=red!50!green!80!blue!100,  left of=AOSP, node distance=2cm] (semaphore) {Semaphore kernel};
-    \node [block, fill=red!80!green!80!blue!100,  right of=hellscore, node distance=2cm] (zulfa) {Zulfa kernel};
-    \node [block, fill=red!80!green!80!blue!100,  left of=semaphore, node distance=2cm] (pandan) {Pandan kernel};
+   % \node [block,  fill=red!50!green!80!blue!100,  below right 2cm of=AOSP, node distance=4cm] (franco) {Franco gombak kernel};
+   % \node [block,  fill=red!50!green!80!blue!100,  below of=AOSP, node distance=2cm] (ampang) {Ampang kernel};
+   % \node [block,  fill=red!50!green!80!blue!100,  below right of=AOSP, node distance=2cm] (hellscore) {Hellscore kernel};
+   % \node [block,  fill=red!50!green!80!blue!100,  below left of=AOSP, node distance=2cm] (semaphore) {Semaphore kernel};
+   % \node [block, fill=red!80!green!80!blue!100,  below of =hellscore, node distance=2cm] (zulfa) {Zulfa kernel};
+   % \node [block, fill=red!80!green!80!blue!100,  below of=semaphore, node distance=2cm] (pandan) {Pandan kernel};
    %\node [block, below of=identify] (evaluate) {evaluate candidate models};
     %node [block, left of=evaluate, node distance=3cm] (update) {update model};
    %\node [decision, below of=evaluate] (decide) {is best candidate better?};
    %\node [block, below of=decide, node distance=3cm] (stop) {stop};
     % Draw edges
-    \path [line] (AOSP) -- (ampang);
-    \path [line] (AOSP) -- (hellscore);
-    \path [line] (AOSP) -- (semaphore);
-    \path [line] (AOSP) -- (franco);
-    \path [line] (hellscore) -- (zulfa);
-    \path [line] (semaphore) -- (pandan);
+   % \path [line] (AOSP) -- (ampang);
+   % \path [line] (AOSP) -- (hellscore);
+   % \path [line] (AOSP) -- (semaphore);
+   % \path [line] (AOSP) -- (franco);
+   % \path [line] (hellscore) -- (zulfa);
+   % \path [line] (semaphore) -- (pandan);
     %path [line] (identify) -- (evaluate);
     %path [line] (evaluate) -- (decide);
     %path [line] (decide) -| node [near start] {yes} (update);
@@ -364,9 +366,107 @@ cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PY
     %path [line,dashed] (expert) -- (init);
     %path [line,dashed] (system) -- (init);
     %path [line,dashed] (system) |- (evaluate);
+%\end{tikzpicture}
+%\end{frame}
+
+\begin{frame}{My kernel projects for Nexus 4/Mako}
+ \tikzset{
+  basic/.style  = {draw, text width=3cm, drop shadow, rectangle},%font=\sffamily, rectangle},
+  root/.style   = {basic, rounded corners=1pt, thin, align=center,
+                   fill=red!40!blue!80!green!100},
+  level 2/.style = {basic, rounded corners=1pt, thin,align=center, fill=red!30!blue!50!green!100,
+                   text width=8em},
+  level 3/.style = {basic, thin, align=left, fill=red!70!blue!90!green!100,text width=8em}
+}
+
+\begin{tikzpicture}[
+  level 1/.style={sibling distance=23mm},
+  edge from parent/.style={->,draw},
+  >=latex]
+\tiny
+% root of the the initial tree, level 1
+\node[root] {Kernel Sources}
+% The first level, as children of the initial tree
+  child {node[level 2] (c1) {Semaphore Kernel}}
+  child {node[level 2] (c2) {Hellscore Kernel}}
+  child {node[level 2] (c3) {Ampang Kernel}}  
+  child {node[level 2] (c4) {Franco Kernel}}
+  child {node[level 2, fill=red!90!blue!90!green!90] (c5) {Aufa Kernel (CM based kernel)}} ; 
+% The second level, relatively positioned nodes
+\begin{scope}[every node/.style={level 3}]
+\node [below of = c1, xshift=15pt] (c11) {Pandan Kernel};
+\node [below of = c2, xshift=15pt] (c21) {Zulfa Kernel};
+\node [below of = c4, xshift=15pt] (c41) {Franco Gombak Kernel};
+
+
+\end{scope}
+
+% lines from each level 1 node to every one of its "children"
+%\foreach \value in {1,2,3}
+\foreach \value in {1}
+  \draw[->] (c1.205) |- (c1\value.west);
+
+%\foreach \value in {1,...,4}
+\foreach \value in {1}
+  \draw[->] (c2.195) |- (c2\value.west);
+
+\foreach \value in {1}
+  \draw[->] (c4.195) |- (c4\value.west);
+  
+
+  
 \end{tikzpicture}
 \end{frame}
 
+
+
+\begin{frame}{My kernel projects for Nexus 5/Hammerhead}
+ \tikzset{
+  basic/.style  = {draw, text width=3cm, drop shadow, rectangle},%font=\sffamily, rectangle},
+  root/.style   = {basic, rounded corners=1pt, thin, align=center,
+                   fill=red!40!blue!80!green!100},
+  level 2/.style = {basic, rounded corners=1pt, thin,align=center, fill=red!30!blue!50!green!100,
+                   text width=10em},
+  level 3/.style = {basic, thin, align=left, fill=red!70!blue!90!green!100,text width=10em}
+}
+
+\begin{tikzpicture}[
+  level 1/.style={sibling distance=30mm},
+  edge from parent/.style={->,draw},
+  >=latex]
+\tiny
+% root of the the initial tree, level 1
+\node[root] {Kernel Sources}
+% The first level, as children of the initial tree
+  child {node[level 2] (c1) {ElementalX}}
+  child {node[level 2] (c2) {CodeBlue}}
+  child {node[level 2] (c3) {Jerung Kernel}}
+  child {node[level 2, fill=red!90!blue!90!green!90] (c4) {Lekiu Kernel (for L preview)}} 
+  ; 
+% The second level, relatively positioned nodes
+\begin{scope}[every node/.style={level 3}]
+\node [below of = c1, xshift=15pt] (c11) {Cempaka Kernel};
+\node [below of = c2, xshift=15pt] (c21) {Blue Kelisa Kernel};
+
+\end{scope}
+
+% lines from each level 1 node to every one of its "children"
+%\foreach \value in {1,2,3}
+\foreach \value in {1}
+  \draw[->] (c1.190) |- (c1\value.west);
+
+%\foreach \value in {1,...,4}
+\foreach \value in {1}
+  \draw[->] (c2.190) |- (c2\value.west);
+
+%\foreach \value in {1}
+%  \draw[->] (c4.195) |- (c4\value.west);
+  
+
+  
+\end{tikzpicture}
+\end{frame}
+ 
 
 \end{document}
 
