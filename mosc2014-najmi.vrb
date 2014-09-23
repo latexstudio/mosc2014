@@ -1,0 +1,22 @@
+\tiny
+\begin{Verbatim}[commandchars=\\\{\}]
+najmi@quds:\PYZti{}/cempaka\PYZhy{}kernel\PY{n+nv}{\PYZdl{} }git log \PYZhy{}\PYZhy{}pretty\PY{o}{=}format:
+\PY{l+s+s1}{\PYZsq{}\PYZpc{}Cred\PYZpc{}h\PYZpc{}Creset \PYZhy{}\PYZpc{}C(yellow)\PYZpc{}d\PYZpc{}Creset \PYZpc{}s \PYZpc{}Cgreen(\PYZpc{}cr)
+\PYZpc{}C(bold blue)\PYZlt{}\PYZpc{}an\PYZgt{}\PYZpc{}Creset
+\PYZsq{}} \PYZhy{}\PYZhy{}abbrev\PYZhy{}commit
+ba22633 \PYZhy{} \PY{o}{(}HEAD, origin/cempaka\PYZhy{}stable, cempaka\PYZhy{}stable\PY{o}{)}
+Cempaka v2.5 \PY{o}{(}11 days ago\PY{o}{)} \PYZlt{}Muhammad Najmi Ahmad Zabidi\PYZgt{}
+acaaeea \PYZhy{} Merge branch \PY{l+s+s1}{\PYZsq{}ElementalX\PYZhy{}1.00\PYZhy{}cm\PYZsq{}} of
+https://github.com/flar2/ElementalX\PYZhy{}N5 into cempaka\PYZhy{}stable \PY{o}{(}11 days ago\PY{o}{)} \PYZlt{}Muhammad Najmi Ahmad Zabidi\PYZgt{}
+039a263 \PYZhy{} \PY{o}{(}elementalx/ElementalX\PYZhy{}1.00\PYZhy{}cm\PY{o}{)} Merge branch \PY{l+s+s1}{\PYZsq{}ElementalX\PYZhy{}1.00
+\PYZsq{}} into ElementalX\PYZhy{}1.00\PYZhy{}cm
+\PY{o}{(}12 days ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+cb7e4f0 \PYZhy{} \PY{o}{(}elementalx/ElementalX\PYZhy{}1.00\PY{o}{)} update defconfig \PY{o}{(}12 days ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+753de48 \PYZhy{} msm\PYZhy{}sleeper: use ex\PYZus{}max\PYZus{}freq \PY{o}{(}12 days ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+c5cc9d2 \PYZhy{} Merge branch \PY{l+s+s1}{\PYZsq{}ElementalX\PYZhy{}1.00\PYZsq{}} into
+ElementalX\PYZhy{}1.00\PYZhy{}cm \PY{o}{(}2 weeks ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+8438630 \PYZhy{} vibrator: change permissions again \PY{o}{(}2 weeks ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+e51fa2d \PYZhy{} Revert \PY{l+s+s2}{\PYZdq{}vibrator: change sysfs permissions\PYZdq{}} \PY{o}{(}2 weeks ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+9949aff \PYZhy{} Merge branch \PY{l+s+s1}{\PYZsq{}ElementalX\PYZhy{}1.00\PYZsq{}} into ElementalX\PYZhy{}1.00\PYZhy{}cm \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PYZgt{}
+\end{Verbatim}
