@@ -3,7 +3,7 @@
 %\usetheme{Gombak} ni cerah
 \usetheme{Ampang}% ni gelap
 
-\usepackage{ubuntu}
+\usepackage{ubuntu,caption}
 \usepackage{beamerthemesplitku}
 
 %\usepackage{beamerthemetree}
@@ -173,6 +173,7 @@
 \begin{column}{5cm}
  
  
+ %\section{Intro}
  \begin{itemize}
   \item Android is a mobile operating system
   \item Using \emph{Linux} kernel
@@ -193,8 +194,8 @@
 \begin{frame}{Comparison between Android kernel and ROM}
 
 \begin{table}
- \begin{tabular} { p{5cm}| p{5cm} }
- \hline\hline
+ \begin{tabular} { |p{5cm}| p{5cm}| }
+ \hline
   Kernel&ROM\\
   \hline
   
@@ -280,7 +281,7 @@
  
 \end{frame}
 
-
+%\section{Git}
 \begin{frame}[fragile]{Git cloning the source}
  \tiny{\begin{verbatim}
 najmi@quds:~$ git clone https://android.googlesource.com/kernel/msm -b android-msm-hammerhead-3.4-l-preview
@@ -338,7 +339,7 @@ cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PY
 %\begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
   
-  /%\node [block] (AOSP) {AOSP kernel};
+  %\node [block] (AOSP) {AOSP kernel};
   % \node [cloud, left of=init] (expert) {expert};
   % \node [cloud, right of=init] (system) {system};
    % \node [block,  fill=red!50!green!80!blue!100,  below right 2cm of=AOSP, node distance=4cm] (franco) {Franco gombak kernel};
@@ -369,14 +370,100 @@ cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PY
 %\end{tikzpicture}
 %\end{frame}
 
-\begin{frame}
+\begin{frame}{Android timeline, from 4.x}
+\begin{itemize}
+ \item 4.0 (Ice Cream Sandwich)
+  \item 4.1 (Jelly Bean)
+  \item 4.2  (Jelly Bean)
+  \item 4.3  (Jelly Bean)
+  \item 4.4 (KitKat)
+  \begin{itemize}
+   \item 4.4.1
+   \item 4.4.2
+   \item 4.4.3
+   \item 4.4.4 (latest, as of now)
+  \end{itemize}
+
+\end{itemize}
+
+ 
+\end{frame}
+
+%\section{My works}
+%\subsection{Nexus 4/Mako}
+\begin{frame}{My kernel projects for Nexus 4/Mako}
  \tikzset{
   basic/.style  = {draw, text width=3cm, drop shadow, rectangle},%font=\sffamily, rectangle},
   root/.style   = {basic, rounded corners=1pt, thin, align=center,
                    fill=red!40!blue!80!green!100},
-  level 2/.style = {basic, rounded corners=6pt, thin,align=center, fill=red!50!blue!50!green!100,
+  level 2/.style = {basic, rounded corners=1pt, thin,align=center, fill=red!30!blue!50!green!100,
                    text width=8em},
-  level 3/.style = {basic, thin, align=left, fill=red!90!blue!90!green!50,text width=6.5em}
+  level 3/.style = {basic, thin, align=left, fill=red!70!blue!90!green!100,text width=8em}
+}
+
+\begin{tikzpicture}[
+  level 1/.style={sibling distance=20mm},
+  edge from parent/.style={->,draw},
+  >=latex]
+\tiny
+% root of the the initial tree, level 1
+\node[root] (root) {Kernel Sources}
+% The first level, as children of the initial tree
+  child {node[level 2,text width=6em] (c1) {Semaphore Kernel}}
+  child {node[level 2,text width=4.5em] (c2) {Hellscore Kernel}}  
+  child {node[level 2,text width=4em] (c4) {Franco Kernel}}
+  child {node[level 2, fill=red!90!blue!90!green!90,text width=2em] (c5) {CM}} 
+  child {node[level 2,text width=4em] (c6) {Bricked Kernel}}
+  child {node[level 2,text width=4em] (c3) {Ampang Kernel}}  
+  ;
+  
+  
+% The second level, relatively positioned nodes
+\begin{scope}[every node/.style={level 3}]
+\node [below of = c1, xshift=15pt,text width=4em] (c11) {Pandan Kernel};
+\node [below of = c2, xshift=15pt,text width=4em] (c21) {Zulfa Kernel};
+\node [below of = c4, xshift=15pt,text width=4em] (c41) {Franco Gombak Kernel};
+\node [below of = c5, xshift=15pt,text width=4em] (c51) {Aufa Kernel};
+\node [below of = c6, xshift=15pt,text width=4em] (c61) {Seladang Kernel};
+
+\end{scope}
+
+% lines from each level 1 node to every one of its "children"
+%\foreach \value in {1,2,3}
+\foreach \value in {1}
+  \draw[->] (c1.220) |- (c1\value.west);
+
+%\foreach \value in {1,...,4}
+\foreach \value in {1}
+  \draw[->] (c2.220) |- (c2\value.west);
+
+\foreach \value in {1}
+  \draw[->] (c4.220) |- (c4\value.west);
+
+ % \foreach \value in {1}
+ % \draw[->] (c5.240) |- (c5\value.east);  
+  
+\foreach \value in {1}
+  \draw[->] (c6.220) |- (c6\value.west);
+  
+\foreach \value in {1}
+  \draw[->] (c5.220) |- (c5\value.west);  
+
+  
+\end{tikzpicture}
+\end{frame}
+
+
+
+%\subsection{Nexus 5/Hammerhead}
+\begin{frame}{My kernel projects for Nexus 5/Hammerhead}
+ \tikzset{
+  basic/.style  = {draw, text width=3cm, drop shadow, rectangle},%font=\sffamily, rectangle},
+  root/.style   = {basic, rounded corners=1pt, thin, align=center,
+                   fill=red!40!blue!80!green!100},
+  level 2/.style = {basic, rounded corners=1pt, thin,align=center, fill=red!30!blue!50!green!100,
+                   text width=10em},
+  level 3/.style = {basic, thin, align=left, fill=red!70!blue!90!green!100,text width=10em}
 }
 
 \begin{tikzpicture}[
@@ -385,47 +472,302 @@ cbee9fe \PYZhy{} update defconfig \PY{o}{(}3 weeks ago\PY{o}{)} \PYZlt{}flar2\PY
   >=latex]
 \tiny
 % root of the the initial tree, level 1
-\node[root] {AOSP kernel}
+\node[root] {Kernel Sources}
 % The first level, as children of the initial tree
-  child {node[level 2] (c1) {Semaphore Kernel}}
-  child {node[level 2] (c2) {Hellscore Kernel}}
-  child {node[level 2] (c3) {Ampang Kernel}}  
-  child {node[level 2] (c4) {Franco-gombak Kernel}};
-
+  child {node[level 2] (c1) {ElementalX}}
+  child {node[level 2] (c2) {CodeBlue}}
+  child {node[level 2] (c3) {Jerung Kernel}}
+  child {node[level 2, fill=red!90!blue!90!green!90] (c4) {Lekiu Kernel (for L preview)}} 
+  ; 
 % The second level, relatively positioned nodes
 \begin{scope}[every node/.style={level 3}]
-\node [below of = c1, xshift=15pt] (c11) {Pandan Kernel};
-%\node [below of = c11] (c12) {};
-%\node [below of = c12] (c13) {};
+\node [below of = c1, xshift=15pt] (c11) {Cempaka Kernel};
+\node [below of = c2, xshift=15pt] (c21) {Blue Kelisa Kernel};
 
-\node [below of = c2, xshift=15pt] (c21) {Zulfa Kernel};
-%\node [below of = c21] (c22) {};
-%\node [below of = c22] (c23) {};
-%\node [below of = c23] (c24) {};
-
-%\node [below of = c3, xshift=15pt] (c31) {};
-%\node [below of = c31] (c32) {};
-%\node [below of = c32] (c33) {};
-%\node [below of = c33] (c34) {};
-%\node [below of = c34] (c35) {};
 \end{scope}
 
 % lines from each level 1 node to every one of its "children"
 %\foreach \value in {1,2,3}
 \foreach \value in {1}
-  \draw[->] (c1.195) |- (c1\value.west);
+  \draw[->] (c1.190) |- (c1\value.west);
 
 %\foreach \value in {1,...,4}
 \foreach \value in {1}
-  \draw[->] (c2.195) |- (c2\value.west);
+  \draw[->] (c2.190) |- (c2\value.west);
 
-%\foreach \value in {1,...,5}
-%  \draw[->] (c3.195) |- (c3\value.west);
+%\foreach \value in {1}
+%  \draw[->] (c4.195) |- (c4\value.west);
+  
+
+  
 \end{tikzpicture}
 \end{frame}
+ 
+ \begin{frame}{My Nexus 4/Mako Kernel Features}
+  \tiny
+ \begin{table}
+
+ \begin{tabular} {| p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.7cm}|p{1.25cm}|p{1cm}|p{1cm}|}
+   
+ \hline
+  Kernel&Tap2Wake and S2S/S2W&Additional Governors&Additional Schedulers&Fast Charge&Multiboot (kexec)&Intelliplug&Advanced MPD\\
+  \hline
+  Aufa&X&X&X&X&X&X&- \\
+  \hline
+  Zulfa&X&X&X&X&X&X&-\\
+  \hline
+  Ampang&X&X&X&X&X&X&-\\
+  \hline
+  Franco Gombak&X&X&X&X&X&-&-\\
+  \hline
+  Seladang&X&X&X&X&X&-&X\\
+  \hline
+  Pandan&X&X&X&X&X&X&-\\
+  \hline
+  
+ \end{tabular}
+\caption{Features of the custom kernels (at least from what I remember)}
+ \end{table}  
+ \end{frame}
+
+ \begin{frame}{My Nexus 5/Hammerhead Kernel Features}
+  \tiny
+ \begin{table}
+
+ \begin{tabular} {| p{1.3cm}|p{.8cm}|p{1cm}|p{1.2cm}|p{0.7cm}|p{1.25cm}|p{1cm}|p{.8cm}|}
+   
+ \hline
+  Kernel&Tap2Wake and S2S/S2W&Additional Governors&Additional Schedulers&Fast Charge&Multiboot (kexec)&Intelliplug&Advanced MPD\\
+  \hline
+  Cempaka&X&X&X&X&X&X&- \\
+  \hline
+  Blue Kelisa&X&X&X&X&X&X&-\\
+  \hline
+  Jerung&X&X&X&X&X&X&-\\
+  \hline
+  Lekiu&X&X&X&X&not yet&-&-\\
+  \hline  
+  
+ \end{tabular}
+\caption{Features of the custom kernels (at least from what I remember)}
+ \end{table}  
+ \end{frame} 
+ 
+ 
+ \begin{frame}{MultiROM capabilities}
+ \begin{columns}
+  \begin{column}{0.5\textwidth}
+  \begin{figure}
+  \includegraphics[scale=.08]{multirom}  
+  \caption{List of ROMs}
+  \end{figure}
+  \end{column}
+  
+  \begin{column}{0.5\textwidth}
+    \begin{figure}
+   \includegraphics[scale=.08]{multirom2}    
+   \caption{MultiROM settings}
+    \end{figure}
+
+    
+  \end{column}
+ \end{columns}
+ \end{frame}
+
+ %\section{Kernel configurations}
+ 
+  \begin{frame}{Kernel configurations}
+   \begin{figure}
+   \includegraphics[scale=.1]{trickster}    
+   \caption {\tiny{Using trickster to tune the kernel parameters, by sysfs interfacing}}
+    \end{figure}
+  \end{frame}
+
+  
+%  \subsection{I/O scheduler selector}
+    \begin{frame}{I/O scheduler selector}
+   \begin{figure}
+   \includegraphics[scale=.1]{scheduler} 
+   \caption {\tiny{Using trickster to select preferred I/O scheduler}}
+   \end{figure}
+     
+    \end{frame}
+
+%\subsection{CPU governors}    
+\begin{frame}{CPU governors}
+   \begin{figure}
+   \includegraphics[scale=.1]{governor} 
+   \caption {\tiny{Using trickster to select preferred CPU governors}}
+   \end{figure}
+     
+    \end{frame}
+    
+    
+ \begin{frame}{How to compile Android kernel?}
+ \begin{itemize}
+  \item Use desktop PC (Mine is i3, 16GB RAM, Ubuntu 14.04 LTS)
+  \item Only works on 64-bit Linux
+  \item Use cross compiler.. GCC for ARM
+  \item Cross compiling in this case means compiling ARM kernel image on x86 (x64) based machine
+  \begin{itemize}
+   \item Default kernel sources somehow cannot use latest (bleeding edge) GCC (as for now 4.10). Need some patches
+   to allow that.
+  \end{itemize}
+ \end{itemize}  
+ \end{frame}
+   
+\begin{frame}{How to add features}
+\begin{itemize}
+ \item Use ``\texttt{patch}'' command by downloading intended patch from other source manually
+ \item Use ``\texttt{git cherry pick}'' command 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Patch}
+ \tiny \begin{Verbatim}
+  wget -c https://github.com/engstk/l-preview/commit/8c203729fc0d4479b790408de2ac464745cc7769.patch
+--2014-09-24 23:53:24--
+https://github.com/engstk/l-preview/commit/8c203729fc0d4479b790408de2ac464745cc7769.patch
+Resolving github.com (github.com)... 192.30.252.130
+Connecting to github.com (github.com)|192.30.252.130|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/plain]
+Saving to: '8c203729fc0d4479b790408de2ac464745cc7769.patch'
+
+    [  <=>                                                                                                               ] 20,146      59.6KB/s   in 0.3s   
+
+2014-09-24 23:53:26 (59.6 KB/s) - '8c203729fc0d4479b790408de2ac464745cc7769.patch'saved [20146]
+
+najmi@quds:~/lekiu-lprev-kernel$ patch -Np1 -i 8c203729fc0d4479b790408de2ac464745cc7769.patch 
+patching file arch/arm/Kconfig
+Hunk #1 succeeded at 2213 (offset 1 line).
+patching file arch/arm/boot/compressed/head.S
+patching file arch/arm/configs/hammerhead_defconfig
+patching file arch/arm/include/asm/kexec.h
+patching file arch/arm/kernel/machine_kexec.c
+patching file arch/arm/kernel/relocate_kernel.S
+patching file arch/arm/mach-msm/include/mach/memory.h
+patching file arch/arm/mach-msm/lge/devices_lge.c
+patching file arch/arm/mach-msm/restart.c
+patching file include/linux/kexec.h
+patching file kernel/kexec.c
+
+ \end{Verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{git cherry pick}
+ \tiny \begin{Verbatim}        
+najmi@quds:~/lekiu-lprev-kernel$ git fetch codeblue 
+remote: Counting objects: 1073, done.
+remote: Compressing objects: 100% (422/422), done.
+remote: Total 1073 (delta 698), reused 974 (delta 649)
+Receiving objects: 100% (1073/1073), 1.09 MiB | 443.00 KiB/s, done.
+Resolving deltas: 100% (698/698), done.
+From https://github.com/engstk/l-preview
+ + 3043028...647125f code_blue-l -> codeblue/code_blue-l  (forced update)
+ + 59063dc...647125f code_blue-l-beta -> codeblue/code_blue-l-beta  (forced update)
+
+ najmi@quds:~/lekiu-lprev-kernel$ git cherry-pick 8c203729fc
+[test cf6f160] Implement kexec-hardboot by. All work done by @Tasssadar
+ Author: franciscofranco <franciscofranco.1990@gmail.com>
+ 11 files changed, 350 insertions(+), 7 deletions(-)
+\end{Verbatim}
+\end{frame}
+   
+\begin{frame}
+ \begin{itemize}
+  \item Since kernel sources are GPL, if you publish your release, you MUST publish your source codes
+  \item People can view your codes/modifications or borrow/use them anyway they want, and they need to publish them as well  
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Custom ROM}
+\begin{itemize}
+ \item Custom ROMs are either AOSP or CM
+ \item AOSP and CM ROM source are out there, many creative people do modifications on these sources
+ \item Popular custom ROMs with relatively awesome team members and support many devices
+ \begin{itemize}
+  \item CyanogenMod
+  \item Carbon ROM 
+  \item Liquid Smooth
+  \item Paranoid Android (PA)
+  \item Mahdi ROM
+  \item AOKP
+ \end{itemize}
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+ \begin{itemize}
+  \item Sources and modifications are updated in gerrits
+  \item Cherry pick is also possible  
+ \end{itemize}
+\end{frame}
+
+{\setbeamertemplate{logo}{}
+\begin{frame}
+\begin{columns}[t]
+ 
+ \begin{column}{5cm}
+  
+ \begin{figure}
+ \includegraphics[scale=0.1]{ls}
+   \caption{\tiny{Liquid Smooth ROM, running Cempaka Kernel}}
+ \end{figure}
 
  
+\end{column}
 
+ \begin{column}{5cm}
+ \begin{figure}
+ \includegraphics[scale=0.1]{carbon}
+   \caption{\tiny{Carbon ROM, running Blue Kelisa Kernel}}
+ \end{figure}
+ \end{column}
+
+\end{columns}
+ \end{frame}
+}
+
+\begin{frame}{Source sync}
+\begin{itemize}
+ \item ROMs are using ``repo'' command to sync all changes from the upstream
+ \item Updates are based from the repositories defined in the manifest file
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Repo sync}
+\tiny \begin{verbatim}
+najmi@quds:~/rom/aicp$ repo sync
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://github.com/AICP/platform_manifest
+   9ee1fc3..d607bb2  kitkat     -> origin/kitkat
+project .repo/manifests/
+Updating 9ee1fc3..d607bb2
+Fast-forward
+ default.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Fetching project platform/packages/apps/Provision
+Fetching project CyanogenMod/android_hardware_ti_wpan
+Fetching project omnirom/android_packages_wallpapers_PhaseBeam
+Fetching project platform/external/tinyxml
+...............
+remote: Counting objects: 12, done
+remote: Finding sources: 100% (12/12)
+remote: Total 12 (delta 0), reused 12 (delta 0)
+remote: Counting objects: 12, done
+Unpacking objects: 100% (12/12), done. 
+From https://android.googlesource.com/platform/external/eigen
+\end{verbatim}
+\end{frame}
+
+   
 \end{document}
 
 
